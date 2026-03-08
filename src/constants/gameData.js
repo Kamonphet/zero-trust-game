@@ -21,7 +21,7 @@ export const ASSETS = {
   logo: new URL("../assets/logo.png", import.meta.url).href,
   background: new URL("../assets/background.png", import.meta.url).href,
   rules: new URL("../assets/rule.png", import.meta.url).href,
-  ifogame: new URL("../assets/ifogame.jpg", import.meta.url).href,
+  ifogame: new URL("../assets/ifogame.png", import.meta.url).href,
   token: new URL("../assets/token.png", import.meta.url).href,
   backCover: new URL("../assets/back_cover_card.png", import.meta.url).href,
   sounds: {
