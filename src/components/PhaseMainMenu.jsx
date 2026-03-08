@@ -60,11 +60,11 @@ const PhaseMainMenu = () => {
 
       <div className="z-10 flex flex-col items-center w-full max-w-md md:max-w-xl px-6 pb-20 animate-fade-in-up">
         {/* Big Logo */}
-        <div className="text-center w-full mb-2">
+        <div className="text-center w-full mb-10 transform scale-110 md:scale-125 transition-transform duration-700">
           <img
             src={ASSETS.logo}
             alt="Zero Trust Logo"
-            className="w-full h-auto drop-shadow-[0_0_40px_rgba(34,197,94,0.6)] hover:drop-shadow-[0_0_60px_rgba(34,197,94,0.9)] transition-all duration-500"
+            className="w-full h-auto drop-shadow-[0_0_50px_rgba(34,197,94,0.6)] hover:drop-shadow-[0_0_70px_rgba(34,197,94,0.9)] transition-all duration-500"
           />
         </div>
 
