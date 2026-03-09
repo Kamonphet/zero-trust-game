@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import useGameStore from "../store/useGameStore";
 import { ASSETS, DEFENSE_CARDS, GAME_PHASES } from "../constants/gameData";
-import { useSfx } from "../hooks/useAudio";
+import { useSfx, useBgm } from "../hooks/useAudio";
 import {
   BookOpen,
   Swords,
@@ -125,6 +125,7 @@ const generateChoices = (correctId) => {
 const PhaseQuiz = () => {
   const { setPhase, quizQuestionCount, quizDifficulty } = useGameStore();
   const { play: playSfx } = useSfx();
+  const { play: playBgm, stop: stopBgm } = useBgm();
 
   const topRef = useRef(null);
   const [mode, setMode] = useState(null); // 'KNOWLEDGE' or 'TEST'
@@ -205,7 +206,7 @@ const PhaseQuiz = () => {
         setTimeout(() => setBonusShown(null), 1200);
       }
 
-      playSfx(ASSETS.sounds.win); // Positive feedback
+      playSfx(ASSETS.sounds.correct); // Positive feedback
       setShakeTarget("SCAMMER");
       const newHp = Math.max(0, scammerHp - totalDmg);
       setScammerHp(newHp);
@@ -222,7 +223,7 @@ const PhaseQuiz = () => {
       }
     } else {
       setStreak(0);
-      playSfx(ASSETS.sounds.lost);
+      playSfx(ASSETS.sounds.incorrect);
       setShakeTarget("HACKER");
       const newHp = Math.max(0, hackerHp - hackerDmg);
       setHackerHp(newHp);
@@ -243,12 +244,13 @@ const PhaseQuiz = () => {
   const checkWinCondition = (finalScammerHp, finalHackerHp) => {
     setTimeout(() => {
       setShakeTarget(null);
+      stopBgm(); // Stop background music on result screen
       if (finalScammerHp <= finalHackerHp && finalHackerHp > 0) {
         setQuizStatus("WON");
-        playSfx(ASSETS.sounds.correct);
+        playSfx(ASSETS.sounds.win);
       } else {
         setQuizStatus("LOST");
-        playSfx(ASSETS.sounds.incorrect);
+        playSfx(ASSETS.sounds.lost);
       }
     }, 800);
   };
@@ -593,15 +595,18 @@ const PhaseQuiz = () => {
           <div className="flex gap-4">
             <button
               onClick={() => {
-                const newScenarios = generateScenarios(quizQuestionCount);
-                setScenarios(newScenarios);
-                setHackerHp(100);
-                setScammerHp(100);
-                setCurrentScenarioIndex(0);
-                setQuizStatus("PLAYING");
-                setCurrentChoices(generateChoices(newScenarios[0].correctId));
-                setStreak(0);
-                setBonusShown(null);
+                handleClick(() => {
+                  const newScenarios = generateScenarios(quizQuestionCount);
+                  setScenarios(newScenarios);
+                  setHackerHp(100);
+                  setScammerHp(100);
+                  setCurrentScenarioIndex(0);
+                  setQuizStatus("PLAYING");
+                  setCurrentChoices(generateChoices(newScenarios[0].correctId));
+                  setStreak(0);
+                  setBonusShown(null);
+                  playBgm(ASSETS.sounds.game); // Restart BGM for next game
+                });
               }}
               className="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 px-8 rounded-xl uppercase tracking-widest transition-all"
             >
