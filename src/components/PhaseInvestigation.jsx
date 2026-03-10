@@ -8,7 +8,7 @@ import { useSfx } from "../hooks/useAudio";
 const shuffleArray = (array) => [...array].sort(() => 0.5 - Math.random());
 
 const PhaseInvestigation = () => {
-  const { players, scammerChoices, setPhase, addClue, resetTurn } =
+  const { players, scammerChoices, setPhase, addClue, resetTurn, boardCards } =
     useGameStore();
   const { play: playSfx } = useSfx();
   const handleClick = (fn) => {
@@ -45,7 +45,7 @@ const PhaseInvestigation = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(168,85,247,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
       {/* Top Navigation Tabs */}
-      <div className="w-full bg-slate-900 border-b border-slate-800 flex sticky top-0 z-10 shadow-lg">
+      <div className="w-full bg-slate-900 border-b border-slate-800 flex sticky top-0 z-50 shadow-lg">
         <button
           onClick={() => setActiveTab("PUBLIC")}
           className={`flex-1 py-4 font-black tracking-widest uppercase transition-all flex justify-center items-center gap-3 ${
@@ -92,7 +92,7 @@ const PhaseInvestigation = () => {
             <div className="mt-6">
               <h3 className="text-xl font-black text-slate-300 uppercase tracking-widest mb-6 border-b-2 border-slate-800 pb-3 flex items-center gap-3">
                 <span className="w-2 h-8 bg-purple-500 inline-block" />
-                เบาะแสจาก Admin
+                เบาะแสที่ได้รับจาก Admin
               </h3>
 
               {Object.keys(clueTokens).length < 3 ? (
@@ -157,6 +157,60 @@ const PhaseInvestigation = () => {
                   })}
                 </div>
               )}
+
+              {/* Evidence Cards Display */}
+              <div className="mt-10">
+                <h3 className="text-xl font-black text-slate-300 uppercase tracking-widest mb-6 border-b-2 border-slate-800 pb-3 flex items-center gap-3">
+                  <span className="w-2 h-8 bg-blue-500 inline-block" />
+                  หลักฐานที่พบในที่เกิดเหตุ
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                  {boardCards.evidence.map((card) => (
+                    <div
+                      key={card.id}
+                      className="flex flex-col gap-2 group relative"
+                    >
+                      <div className="relative aspect-[3/4] overflow-hidden border-2 border-slate-700 group-hover:border-blue-500/50 transition-all group-hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                        <img
+                          src={card.image}
+                          alt={card.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <p className="text-center text-xs font-bold text-slate-400 leading-tight">
+                        {card.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Attack Method Cards Display */}
+              <div className="mt-10">
+                <h3 className="text-xl font-black text-slate-300 uppercase tracking-widest mb-6 border-b-2 border-slate-800 pb-3 flex items-center gap-3">
+                  <span className="w-2 h-8 bg-orange-500 inline-block" />
+                  รูปแบบการโจมตีของ Scammer
+                </h3>
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+                  {boardCards.attackMethods.map((card) => (
+                    <div
+                      key={card.id}
+                      className="flex flex-col gap-2 group relative"
+                    >
+                      <div className="relative aspect-[3/4] overflow-hidden border-2 border-slate-700 group-hover:border-orange-500/50 transition-all group-hover:shadow-[0_0_15px_rgba(249,115,22,0.3)]">
+                        <img
+                          src={card.image}
+                          alt={card.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <p className="text-center text-xs font-bold text-slate-400 leading-tight">
+                        {card.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div className="flex justify-center mt-10">
@@ -169,7 +223,7 @@ const PhaseInvestigation = () => {
                     : "bg-slate-800 text-slate-600 cursor-not-allowed hidden"
                 }`}
               >
-                ดำเนินการสืบสวนต่อ
+                ดำเนินการโหวตหา Scammer
               </button>
             </div>
           </div>

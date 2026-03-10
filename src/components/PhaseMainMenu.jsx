@@ -73,6 +73,7 @@ const PhaseMainMenu = () => {
             onClick={() => handleClick(() => setPhase(GAME_PHASES.SETUP))}
             className="w-full bg-green-500 hover:bg-green-400 text-slate-950 text-white font-bold text-2xl md:text-3xl py-5 rounded-xl uppercase tracking-widest transition-all duration-150 shadow-[0_8px_0_#15803d,0_15px_20px_rgba(0,0,0,0.4)] active:shadow-[0_0_0_#15803d,0_0_0_rgba(0,0,0,0)] active:translate-y-[8px] flex items-center justify-center gap-3"
           >
+            <PlaySquare className="w-6 h-6 text-white" />
             เริ่มเกม
           </button>
 
@@ -83,15 +84,13 @@ const PhaseMainMenu = () => {
             <Medal className="w-6 h-6 text-white" />
             แบบทดสอบ
           </button>
-
           <button
             onClick={() => handleClick(() => setShowRules(true))}
-            className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold text-xl py-4 rounded-xl uppercase tracking-widest transition-all duration-150 shadow-[0_8px_0_#334155,0_15px_20px_rgba(0,0,0,0.4)] active:shadow-[0_0_0_#334155,0_0_0_rgba(0,0,0,0)] active:translate-y-[8px] flex items-center justify-center gap-3"
+            className="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold text-xl py-4 rounded-xl uppercase tracking-widest transition-all duration-150 shadow-[0_8px_0_#0369a1,0_15px_20px_rgba(0,0,0,0.4)] active:shadow-[0_0_0_#0369a1,0_0_0_rgba(0,0,0,0)] active:translate-y-[8px] flex items-center justify-center gap-3"
           >
-            <BookOpen className="w-6 h-6 text-blue-400" />
+            <BookOpen className="w-6 h-6 text-white" />
             คำอธิบายเกม
           </button>
-
           <div className="flex gap-4 w-full">
             <button
               onClick={() => handleClick(() => setShowSettings(true))}

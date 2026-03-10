@@ -150,7 +150,7 @@ const PhaseVoting = () => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.025)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
         <div className="text-center w-full max-w-md bg-slate-900/80 border border-green-500/50 p-8 shadow-[0_0_30px_rgba(34,197,94,0.2)] backdrop-blur-md z-10 relative overflow-hidden animate-pop">
           <div className="absolute top-0 right-0 w-16 h-16 bg-green-500/10 rounded-full blur-2xl" />
-          <p className="text-xs tracking-[0.3em] text-slate-400 uppercase mb-4">
+          <p className="text-xs font-boldtracking-[0.3em] text-slate-400 uppercase mb-4">
             ส่งต่อให้
           </p>
           <img
@@ -190,7 +190,7 @@ const PhaseVoting = () => {
             </div>
           )}
 
-          <p className="text-xs tracking-[0.3em] text-slate-500 uppercase mb-1">
+          <p className="text-sm font-bold tracking-[0.3em] text-white uppercase mb-1">
             การลงคะแนนลับโดย
           </p>
           <h2 className="text-2xl font-black text-green-400 tracking-wider drop-shadow-md">

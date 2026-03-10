@@ -79,7 +79,7 @@ const PhaseRoleReveal = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.025)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
       <div className="max-w-md w-full flex flex-col items-center gap-6 z-10 animate-fade-in-up">
         <div className="text-center w-full">
-          <p className="text-xl tracking-[0.3em] text-white font-bold uppercase mb-2">
+          <p className="text-xl font-bold tracking-[0.3em] text-white uppercase mb-2">
             ส่งต่อให้
           </p>
           <h2 className="text-4xl font-bold text-green-400 tracking-wider bg-slate-900 border border-green-500/30 py-4 px-8 w-full shadow-[0_0_15px_rgba(34,197,94,0.1)]">
